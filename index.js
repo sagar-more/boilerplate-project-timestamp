@@ -24,6 +24,17 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/:date", function (req, res) {
+  const stringFormat = req.params.date.includes("-");
+  
+  const date = new Date(stringFormat ? req.params.date : req.params.date *1);
+  
+  res.json({
+    unix: date.getTime(),
+    utc: date.toGMTString()
+  });
+});
+
 
 
 // listen for requests :)
